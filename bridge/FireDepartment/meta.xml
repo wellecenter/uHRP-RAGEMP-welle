@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<meta>
+  <info name="FireDepartment" author="Spacefrog" type="script"/>
+  
+  <!-- Colshape handler -->
+  <script src="Main.cs"/>
+  <script src="Colshape/ColShapeHandler.cs"/>
+  <script src="DataModels\FireModel.cs"/>
+  <script src="Commands\Commands.cs"/>
+  <script src="RemoteEvents\RemoteEvents.cs"/>
+  <script src="VehicleHandler\VehicleHandler.cs"/>
+  
+  
+</meta>
