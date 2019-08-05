@@ -2050,7 +2050,7 @@ exports = (menu) => {
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 3, {text: "P's & Q's | $${args[3]}"})`);
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 4, {text: "A pack of Redwoods | $${args[4]}"})`);
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 5, {text: "Pisswasser | $${args[5]}"})`);
-        menu.execute(`selectMenuAPI.setItemName('biz_6_items', 6, {text: "iUnion | $${args[6]}"})`);
+        menu.execute(`selectMenuAPI.setItemName('biz_6_items', 6, {text: "uPhone | $${args[6]}"})`);
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 7, {text: "Bag | $${args[7]}"})`);
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 8, {text: "Canister | $${args[8]}"})`);
         menu.execute(`selectMenuAPI.setItemName('biz_6_items', 9, {text: "Patch | $${args[9]}"})`);

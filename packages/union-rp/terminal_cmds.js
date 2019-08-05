@@ -250,7 +250,7 @@ module.exports = {
                     DB.Handle.query("DELETE FROM accounts WHERE login=?", [args[0]], (e, result) => {
                         if (e) return terminal.error(e);
                         if (result.length < 1) return;
-                    });  
+                    });
 
                     DB.Handle.query("SELECT * FROM characters WHERE accountId=?", [result[0].id], (e, result) => {
                         if (e) return terminal.error(e);
@@ -277,7 +277,7 @@ module.exports = {
                                     house.setOwner(0);
                                 });
                             });
-                            
+
                             DB.Handle.query("SELECT * FROM bizes WHERE owner=?", [recipient.id], (e, result) => {
                                 if (e) return terminal.error(e);
                                 if (result.length < 1) return;
@@ -295,7 +295,7 @@ module.exports = {
                                 });
                             });
                         });
-                        
+
 
                         terminal.info(`${player.name} deleted account ${args[0]}`);
                         mp.logs.addLog(`${player.name} deleted account ${args[0]}`, 'main', player.account.id, player.sqlId, { level: player.admin, login: args[0] });
@@ -349,7 +349,7 @@ module.exports = {
                         biz.setOwner(0);
                     });
                 });
-    
+
                 DB.Handle.query("SELECT * FROM characters_headoverlays WHERE character_id=?", [result[0].id], (e, result) => {
                     if (e) return terminal.error(e);
                     if (result.length < 1) return;

@@ -492,7 +492,7 @@ $(document).ready(() => {
 					text: "Pisswasser"
 				},
 				{
-					text: "iUnion"
+					text: "uPhone"
 				},
 				{
 					text: "Bag"

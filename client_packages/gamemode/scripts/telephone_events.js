@@ -49,7 +49,7 @@ exports = (menu) => {
     mp.events.add("telephone.active", (enable) => {
       if (!our_number) return mp.events.call(`nError`, `Phone number not loaded!`);
       mp.enableTelephone = enable;
-      if (our_number && enable) mp.game.graphics.notify("Your number: ~g~" + our_number);
+      if (our_number && enable) mp.game.ui.notifications.showWithPicture("Information", "uHNetwork", "Your phone number is: ~g~" + our_number, "CHAR_CHAT_CALL", 1, true, 0, bgColor = [77, 77, 77], flashColor = [250, 166, 40, 200]); // Testing Better Notification
       mp.gui.cursor.show(enable, enable);
     });
 
