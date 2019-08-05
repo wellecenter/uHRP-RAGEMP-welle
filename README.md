@@ -1,8 +1,11 @@
 # uhRP-RageMP
 MySQL Roleplay RageMP server files
 
-Join our Discord server for more informations & giving a help!
+# In order to have access to all new commits for translations and everything join our discord where you will be granted access to new commits!
+
 https://discord.gg/khpRnAZ
+
+
 
 Installation:
 
