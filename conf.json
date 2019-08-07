@@ -1,8 +1,8 @@
 
 {
 	"maxplayers" : 1000,
-	"name" : "UNTAMEDHero #1: Romania | discord.gg/khpRnAZ | WIP |", 
-	"gamemode" : "freeroam", 
+	"name" : "[Voice][Romania] UNTAMEDHero #1: Romania | discord.gg/khpRnAZ | Alpha Testing |", 
+	"gamemode" : "roleplay", 
 	"stream-distance" : 500.0,
 	"announce" : true,
 	"csharp" : "disabled",
