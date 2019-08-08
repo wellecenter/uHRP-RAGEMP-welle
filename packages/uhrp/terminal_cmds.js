@@ -2427,6 +2427,9 @@ module.exports = {
         minLevel: 1,
         syntax: "[login]:s [lang]:s",
         handler: (player, args) => {
+
+                const languages = ['eng', 'ro', 'rus', 'ger', 'esp', 'br', 'fr',];
+                const lang = languages[id];
             DB.Handle.query("SELECT * FROM accounts WHERE login=?", [args[0]], (e, result) => {
                 if (e) return terminal.error(e);
                 if (result.length < 1) return terminal.error(`Player with login: ${args[0]} not found!`, player);
@@ -2435,7 +2438,7 @@ module.exports = {
                 if (rec) {
                     terminal.info(`${player.name} changed account lang ${args[0]} on ${args[1]}`);
                     mp.logs.addLog(`${player.name} Changed account ${args[0]} main language on ${args[1]}`, 'main', player.account.id, player.sqlId, { level: player.admin, lang: args[1], login: args[0] });
-                    if(recPlayer) recPlayer.notifyWithPicture(`INFORMATION`, `Admin: ~o~${player.name}`, `Changed your main language to: ~b~${args[1]}`, "CHAR_SOCIAL_CLUB", icon = 0, flashing = true, textColor = -1, bgColor = -1, flashColor = [77, 77, 77, 200]);
+                    if(recPlayer) recPlayer.notifyWithPicture(`${i18n.get('basic', 'informations', player.lang)}`, `Admin: ~o~${player.name}`, `${i18n.get('basic', 'adminChangeLang', player.lang)} ~b~${args[1]}`, "CHAR_SOCIAL_CLUB", icon = 0, flashing = true, textColor = -1, bgColor = -1, flashColor = [77, 77, 77, 200]);
                     DB.Handle.query(`UPDATE accounts SET lang=? WHERE login=?`, [args[1], args[0]]);                
 				
 				player.lang = args[1];

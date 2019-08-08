@@ -70,6 +70,15 @@ const i18n = {
 			esp: '',
 			br: '',
 			fr: '',
+		},
+		informations: {
+			eng: 'Informations',
+			ro: 'Informatii',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
 		},		
 
 // MORE TO BE ADDED
@@ -79,6 +88,23 @@ const i18n = {
 
 // END BASIC & GLOBAL INFOS 
 
+// START ADMIN COMMANDS
+
+        admin: {
+			        {
+			adminChangeLang: {
+			    eng: 'Has set your main language to:',
+			    ro: 'Va schimbat limba de afisare in:',			
+			    rus: '',
+			    ger: '',
+			    esp: '',
+			    br: '',
+			    fr: '',							
+			},
+		},	
+	},
+
+// STOP ADMIN COMMANDS
 
 // START AUTH & CHARACTER CREATION	
 	
@@ -191,6 +217,15 @@ const i18n = {
 			br: '',
 			fr: '',
 		},			
+		vehiAlreadyTaken: {
+			eng: 'This vehicle is already taken by another worker!',
+			ro: 'Acest vehicul apartine altui muncitor',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},					
 		 PortWorker: {
             
 

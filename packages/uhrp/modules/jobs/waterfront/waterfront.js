@@ -296,7 +296,7 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
                 if (!mp.players.exists(vehicle.porter)) delete vehicle.porter;
                 else if (vehicle.porter.porter != vehicle) delete vehicle.porter;
                 else if (vehicle.porter !== player) {
-                    player.utils.error("This transport is already taken by another worker!");
+                    player.utils.error(`${i18n.get('uJobs', 'vehAlreadyTaken', player.lang)}`);
                     player.removeFromVehicle();
                     return;
                 } else {
