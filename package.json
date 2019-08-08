@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
-    "bufferutil": "^4.0.0",
+    "bufferutil": "^4.0.1",
     "discord": "^0.8.2",
     "discord.js": "^11.4.2",
     "ext-ip": "^0.3.8",
