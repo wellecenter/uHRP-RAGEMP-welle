@@ -12,6 +12,7 @@
     "externalip": "^1.0.2",
     "gyp": "^0.5.0",
     "https-proxy-agent": "^2.2.1",
+    "i18n": "^0.8.3",
     "libsodium-wrappers": "^0.7.3",
     "log4js": "^2.5.3",
     "md5": "^2.2.1",
