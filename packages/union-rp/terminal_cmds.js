@@ -2254,7 +2254,7 @@ module.exports = {
     },
 
     "update": {
-        description: "Обновить мод до послеdays версии.",
+        description: "Update mod to afterdays version.",
         minLevel: 5,
         syntax: "[branch]:s",
         handler: (player, args) => {

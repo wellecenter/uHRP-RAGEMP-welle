@@ -94,3 +94,5 @@ packages/union-rp/config.js
 packages/union-rp/modules/DB.js
 client_packages/.listcache
 client_packages/gamemode/browser/img/userInterface/Dillinger.md
+server-files.zip
+xdev.sql
