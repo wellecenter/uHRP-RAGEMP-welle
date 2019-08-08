@@ -80,7 +80,7 @@ function helpCmdHandler(player, cmdArgs) {
                 count++;
                 text += `<b>${name}</b> <i>${cmd.syntax}</i> - ${cmd.description}<br/>`;
             }
-            text += `<br/>Total teams: ${count} .<br/>Enter "help name" for review with the team.`;
+            text += `<br/>Total commands: ${count} .<br/>Enter "help name" for details about command.`;
             return terminal.log(text, player);
         }
         var cmdName = cmdArgs[0];
@@ -96,7 +96,7 @@ function helpCmdHandler(player, cmdArgs) {
             text += `<b>${name}</b> ${cmd.syntax} (${cmd.minLevel} lvl.) - ${cmd.description}<br/>`;
         }
         var keys = Object.keys(cmds);
-        text += `<br/>Total teams: ${keys.length} .<br/>Enter "help name" for review with the team.`;
+        text += `<br/>Total commands: ${keys.length} .<br/>Enter "help name" for details about command.`;
         terminal.log(text, player);
     }
 }

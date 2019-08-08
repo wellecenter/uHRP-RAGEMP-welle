@@ -73,7 +73,7 @@ module.exports = {
         }
     },
     "fix": {
-        description: "Починить авто.",
+        description: "Car repair.",
         minLevel: 2,
         syntax: "",
         handler: (player) => {
@@ -561,7 +561,7 @@ module.exports = {
         }
     },
     "info_vc": {
-        description: "Информация о VC.",
+        description: "uCredits informations.",
         minLevel: 7,
         syntax: "[login]:s",
         handler: (player, args) => {
@@ -2408,6 +2408,41 @@ module.exports = {
 
         }
     },
+
+  /*  "setlang": {
+        description: "Set your language..",
+        minLevel: 1,
+        syntax: "[player_id]:n",
+        handler: (player, id) => {
+                const languages = ['eng', 'rus', 'ger', 'br', 'zhs', 'zht', 'cs', 'ro',];
+                const lang = languages[id];
+                if (!lang) return;
+                player.notify(`~g~${i18n.get('basic', 'success', player.lang)}!`);
+                misc.query(`UPDATE users SET lang = '${lang}' WHERE id = '${player.guid}'`);
+                player.lang = lang;
+        }
+    }, */
+    "change_lang": {
+        description: "Change language.",
+        minLevel: 1,
+        syntax: "[login]:s [lang]:s",
+        handler: (player, args) => {
+            DB.Handle.query("SELECT * FROM accounts WHERE login=?", [args[0]], (e, result) => {
+                if (e) return terminal.error(e);
+                if (result.length < 1) return terminal.error(`Player with login: ${args[0]} not found!`, player);
+                let rec = result[0];
+                let recPlayer = mp.players.getByLogin(args[0]);
+                if (rec) {
+                    terminal.info(`${player.name} changed account lang ${args[0]} on ${args[1]}`);
+                    mp.logs.addLog(`${player.name} Changed account ${args[0]} main language on ${args[1]}`, 'main', player.account.id, player.sqlId, { level: player.admin, lang: args[1], login: args[0] });
+                    if(recPlayer) recPlayer.notifyWithPicture(`INFORMATION`, `Admin: ~o~${player.name}`, `Changed your main language to: ~b~${args[1]}`, "CHAR_SOCIAL_CLUB", icon = 0, flashing = true, textColor = -1, bgColor = -1, flashColor = [77, 77, 77, 200]);
+                    DB.Handle.query(`UPDATE accounts SET lang=? WHERE login=?`, [args[1], args[0]]);                
+				
+				player.lang = args[1];
+				}
+            });
+        }
+    },	
 
     "terminal_cmd_name": {
         description: "Change team name.",

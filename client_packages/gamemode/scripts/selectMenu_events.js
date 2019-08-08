@@ -1437,10 +1437,10 @@ exports = (menu) => {
             },
         },
         "driving_school_car": {
-            "Car": () => {
+            "Car License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 1);
             },
-            "Motorcycles": () => {
+            "Moto License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 2);
             },
             "Back": () => {
@@ -1448,10 +1448,10 @@ exports = (menu) => {
             }
         },
         "driving_school_water": {
-            "Boats": () => {
+            "Boat License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 3);
             },
-            "Yachts": () => {
+            "Yacht License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 4);
             },
             "Back": () => {
@@ -1459,10 +1459,10 @@ exports = (menu) => {
             }
         },
         "driving_school_fly": {
-            "Helicopters": () => {
+            "Helicopter License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 11);
             },
-            "Aircraft": () => {
+            "Aircraft License": () => {
                 mp.events.callRemote("drivingSchool.buyLic", 12);
             },
             "Back": () => {

@@ -2052,10 +2052,10 @@ $(document).ready(() => {
 			header: "Driver",
 			location: "right-middle",
 			items: [{
-					text: "Cars"
+					text: "Car License"
 				},
 				{
-					text: "Motorcycle"
+					text: "Moto License"
 				},
 				{
 					text: "Back"
@@ -2066,10 +2066,10 @@ $(document).ready(() => {
 			header: "Water transport",
 			location: "right-middle",
 			items: [{
-					text: "Boats"
+					text: "Boat License"
 				},
 				{
-					text: "Yachts"
+					text: "Yacht License"
 				},
 				{
 					text: "Back"
@@ -2080,10 +2080,10 @@ $(document).ready(() => {
 			header: "Pilot",
 			location: "right-middle",
 			items: [{
-					text: "Helicopters"
+					text: "Helicopter License"
 				},
 				{
-					text: "Aircraft"
+					text: "Aircraft License"
 				},
 				{
 					text: "Back"

@@ -1,4 +1,4 @@
-mp.blips.new(616, new mp.Vector3(-258.56, -841.53, 31.42), { name: 'Почтовый курьер Go Postal', color: 4, scale: 0.7, shortRange: true});
+mp.blips.new(616, new mp.Vector3(-258.56, -841.53, 31.42), { name: 'Go Courier', color: 4, scale: 0.7, shortRange: true});
 const PostalJob = {
   salary_min: 10, // Минимальная сумма прибыли
   salary_max: 1000, // Макисмальная сумма прибыли

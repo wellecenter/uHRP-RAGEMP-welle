@@ -1,4 +1,4 @@
-mp.blips.new(103, new mp.Vector3(538.54, 101.79, 96.54), { name: 'Курьер пиццерии', color: 1, scale: 0.7, shortRange: true}); // Блип на карте
+mp.blips.new(103, new mp.Vector3(538.54, 101.79, 96.54), { name: 'Pizzeria Courier', color: 1, scale: 0.7, shortRange: true}); // Блип на карте
 /*
  player.havepizza - кол-во пиццы у игрока
 */

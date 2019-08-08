@@ -26,7 +26,7 @@ const JobTrash = {
     teams: [],
     functions: {
         enjoyJob(player) {
-            if (mp.convertMinutesToLevelRest(player.minutes).level < 2) return player.utils.error("Вы не достигли 2 уровня!");
+            if (mp.convertMinutesToLevelRest(player.minutes).level < 2) return player.utils.error("You have not reached level 2!");
             player.call("setTrashJobStatus", [true]);
             player.utils.success("You've got a job at the Recycling Centre!");
             player.utils.success("Choose a free garbage truck or join the brigade with the driver!");
@@ -135,8 +135,8 @@ const JobTrash = {
                 leaderId: player.id
             };
 
-            player.utils.info(`Вы пригласили ${rec.name} в бригаду`);
-            rec.utils.info(`Получено приглашение в бригаду`);
+            player.utils.info(`You invited ${rec.name} to the brigade`);
+            rec.utils.info(`Received invitation to the brigade`);
             rec.call("choiceMenu.show", ["acccept_trash_team", {
                 name: player.name
             }]);
@@ -144,49 +144,49 @@ const JobTrash = {
         uninviteTrashPlayer(player, recId) {
             var rec = mp.players.at(recId);
             if (!rec) return player.utils.error(`Citizen not found!`);
-            if (rec === player) return player.utils.error(`Вы не можете уволить себя!`);
+            if (rec === player) return player.utils.error(`You cannot fire yourself!`);
             var dist = player.dist(rec.position);
             if (dist > Config.maxInteractionDist) return player.utils.error(`Citizen far away!`);
             if (player.job !== 9) return player.utils.error(`You don't work at the Recycling Center!`);
             let team = getTrashTeam(player);
-            if (team === undefined) return player.utils.error(`Вы не можете уволить игрока из бригады!`);
-            if (team.target !== rec) return player.utils.error(`У вас нет участников в бригаде!`);
+            if (team === undefined) return player.utils.error(`You cannot fire a player from the gang!`);
+            if (team.target !== rec) return player.utils.error(`You have no team members!`);
 
-            player.utils.warning("Вы уволили " + rec.name + " из бригады!");
-            rec.utils.error(player.name + " уволил вас из бригады!");
+            player.utils.warning("You fired " + rec.name + " from the brigade!");
+            rec.utils.error(player.name + " fired you from the brigade!");
             player.utils.setLocalVar("trashLeader", 1);
             rec.call("update.trash.vehicle", ["cancel", 0, 0]);
             rec.call("createPlaceTrasher", [0, 0, 0, false]);
             delete team.target;
         },
         acceptTrashInvite(player) {
-            if (!player.inviteOffer) return player.utils.error(`Предложение не найдено!`);
+            if (!player.inviteOffer) return player.utils.error(`Offer not found!`);
             var rec = mp.players.at(player.inviteOffer.leaderId);
-            if (!rec) return player.utils.error(`Отправитель не найден!`);
+            if (!rec) return player.utils.error(`Sender not found!`);
             var dist = player.dist(rec.position);
-            if (dist > 5) return player.utils.error(`Отправитель слишком далеко!`);
+            if (dist > 5) return player.utils.error(`Sender too far!`);
             if (player.job !== 9) return player.utils.error(`You don't work at the Recycling Center!`);
-            if (rec.job !== 9) return player.utils.error(`Отправитель не работает в Центре утилизации!`);
+            if (rec.job !== 9) return player.utils.error(`The sender does not work in the recycling center!`);
             let team = getTrashTeam(rec);
-            if (!team) return player.utils.error(`Отправитель больше не является главой бригады!`);
+            if (!team) return player.utils.error(`The sender is no longer the head of the brigade!`);
             let ourteam = getTrashTeam(player);
-            if (ourteam) return player.utils.error(`Вы не можете вступить в бригаду!`);
-            if (team.target) return player.utils.error(`У отправителя уже полная бригада!`);
+            if (ourteam) return player.utils.error(`You cannot join the brigade!`);
+            if (team.target) return player.utils.error(`The sender already has a full team!`);
             delete player.inviteOffer;
 
-            player.utils.success(`Вы вступили в бригаду!`);
+            player.utils.success(`You joined the brigade!`);
             player.toldpos = player.position;
-            rec.utils.info(`${player.name} принял приглашение в бригаду!`);
+            rec.utils.info(`${player.name} accepted the invitation to the brigade!`);
             rec.utils.setLocalVar("trashLeader", 2);
             team.target = player;
-            player.utils.info("Направляйтесь к требуемому баку вместе с водителем!");
+            player.utils.info("Drive to the desired tank with the driver!");
             player.call("update.trash.vehicle", [team.vehicle, team.vehicle.countTrash, JobTrash.trash_max]);
             player.call("createPlaceTrasher", [team.place.x, team.place.y, team.place.z, true]);
         },
         unacceptTrashInvite(player) {
             if (!player.inviteOffer) return;
             var rec = mp.players.at(player.inviteOffer.leaderId);
-            if (rec) rec.utils.error(`${player.name} отказался вступить в бригаду!`);
+            if (rec) rec.utils.error(`${player.name} refused to join the brigade!`);
         },
     }
 }
@@ -282,7 +282,7 @@ mp.events.add("leave.trash.job", (player) => {
 mp.events.add("job.trash.agree", (player) => {
     try {
         if (player.job !== 0 && player.job !== 9) {
-            player.utils.warning("Вы уже где-то работаете!");
+            player.utils.warning("You already work somewhere!");
             return;
         }
 
@@ -305,7 +305,7 @@ mp.events.add("send.trash.end", (player) => {
             let team = getTrashTeam(player);
             if (!team) return;
             if (team.vehicle.countTrash >= JobTrash.trash_max) {
-                player.utils.warning("Транспорт уже переполнен, выгрузите мусор на свалку!");
+                player.utils.warning("Transport is already full, unload garbage in a landfill!");
                 return;
             }
             let money = Math.trunc(player.dist(player.toldpos) * mp.economy["trash_salary"].value);
@@ -317,8 +317,8 @@ mp.events.add("send.trash.end", (player) => {
             player.toldpos = player.position;
             team.vehicle.countTrash++;
             player.utils.setMoney(player.money + money);
-            player.utils.success("Вы заработали $" + money);
-            player.utils.success("Направляйтесь к требуемому баку!");
+            player.utils.success("You've earned $" + money);
+            player.utils.success("Head towards the desired tank!");
             if (team.leader === player) {
                 let place = getRandomNumber(player);
                 team.place = place;
@@ -334,7 +334,7 @@ mp.events.add("send.trash.end", (player) => {
                 let nmoney = Math.round(money / 100 * mp.economy["trash_salary_procent"].value);
                 if (nmoney < JobTrash.salary_min) nmoney = JobTrash.salary_min;
                 else if (nmoney > JobTrash.salary_max) nmoney = JobTrash.salary_max;
-                team.leader.utils.success("Прибавка к зарплате $" + nmoney);
+                team.leader.utils.success("Salary increase $" + nmoney);
                 team.leader.utils.setMoney(team.leader.money + nmoney);
                 team.leader.call("update.trash.vehicle", [team.vehicle, team.vehicle.countTrash, JobTrash.trash_max]);
                 if (team.leader.hastrash) {
@@ -359,11 +359,11 @@ mp.events.add("playerEnterColshape", function onPlayerEnterColShape(player, shap
                 if (team) {
                     if (player.vehicle === team.vehicle) {
                         if (team.vehicle.countTrash < JobTrash.trash_min) {
-                            player.utils.warning("В транспорте нет мусора!");
+                            player.utils.warning("No debris in transport!");
                             return;
                         }
 
-                        player.utils.success("Вы разгрузили мусор на свалку!");
+                        player.utils.success("You unloaded the garbage in a landfill!");
                         team.vehicle.countTrash = 0;
                         player.call("update.trash.vehicle", [team.vehicle, 0, JobTrash.trash_max]);
                         if (team.target) team.target.call("update.trash.vehicle", [team.vehicle, 0, JobTrash.trash_max]);
@@ -394,12 +394,12 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
                 player.call("time.remove.back.trash");
             } else {
                 player.removeFromVehicle();
-                player.utils.warning("Данное транспортное средство уже занято!");
+                player.utils.warning("This vehicle is already taken!");
             }
         } else {
             if (getTrashTeam(player) !== undefined) {
                 player.removeFromVehicle();
-                player.utils.warning("Вы уже заняли одно транспортное средство!");
+                player.utils.warning("You have already taken one vehicle!");
             } else {
                 if (!haveLicense(player, vehicle)) return;
                 player.toldpos = player.position;
@@ -407,7 +407,7 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
                 player.call("createPlaceTrasher", [place.x, place.y, place.z, true]);
                 vehicle.countTrash = 0;
                 player.call("update.trash.vehicle", [vehicle, vehicle.countTrash, JobTrash.trash_max]);
-                player.utils.success("Направляйтесь к требуемому баку!");
+                player.utils.success("Head towards the desired tank!");
                 vehicle.utils.setFuel(vehicle.vehPropData.maxFuel);
                 let team = new TrashTeam(player, undefined, vehicle, place);
                 JobTrash.teams.push(team);
@@ -422,7 +422,7 @@ mp.events.add("playerExitVehicle", function playerExitVehicleHandler(player, veh
         if (team !== undefined) {
             if (team.vehicle === vehicle) {
                 player.call("time.add.back.trash");
-                player.utils.warning("У вас есть 3 минуты, чтобы вернуться в транспорт.");
+                player.utils.warning("You have 3 minutes to return to transport.");
             }
         }
     }

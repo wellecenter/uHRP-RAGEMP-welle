@@ -38,7 +38,7 @@ module.exports = {
 
     "addMileage": (player, value) => {
         debug(`addMileage: ${value}`)
-        if (!player.vehicle) return terminal.error(`event "addMileage": ${player.name} не в машине, но таймер обновления пробега сработал!`);
+        if (!player.vehicle) return terminal.error(`event "addMileage": ${player.name} not in the car, but the mileage update timer worked!`);
         player.vehicle.utils.addMileage(value);
     },
 

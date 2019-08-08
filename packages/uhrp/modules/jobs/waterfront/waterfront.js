@@ -1,6 +1,8 @@
+const i18n = require('../../uI18n');
+
 // Создание BLIP
 mp.blips.new(351, new mp.Vector3(-410.083, -2700.001, 6.000), {
-    name: 'Портовый рабочий',
+    name: 'Port job',
     color: 5,
     scale: 0.7,
     shortRange: true
@@ -154,10 +156,10 @@ function putBox(player) {
     if (player.waterfrontfloor === undefined) return;
     player.utils.putObject();
     let money = Math.round(mp.economy["waterfront_salary"].value * JobWaterFront.markers[player.waterfrontfloor].money_x);
-    player.utils.success(`Заработано: ${money}$`);
+    player.utils.success(`${i18n.get('basic', 'earned1', player.lang)} ${money}$`);
     player.utils.setMoney(player.money + money);
     player.utils.setJobSkills(8, player.jobSkills[8 - 1] + 1);
-    if (player.jobSkills[8 - 1] === 50) player.utils.warning("Вам открыта 2 ступень работы!");
+    if (player.jobSkills[8 - 1] === 50) player.utils.warning(`${i18n.get('uJobs', 'youOpen2ndStageJob', player.lang)}`);
     delete player.waterfrontfloor;
     delete player.boxwaterfront;
     sendBox(player);
@@ -171,7 +173,7 @@ function takeBox(player) {
     if (player.waterfrontfloor === undefined) return;
     player.utils.takeObject("hei_prop_heist_wooden_box");
     player.call("create.watefront.item", [true, true, 2, JobWaterFront.storage.x, JobWaterFront.storage.y, JobWaterFront.storage.z]);
-    player.utils.error("Отнесите ящик на склад!");
+    player.utils.error(`${i18n.get('uJobs', 'takeBoxToWarehouse', player.lang)}`);
     player.boxwaterfront = true;
 }
 
@@ -180,7 +182,7 @@ function sendBox(player) {
     let place = getRandomNumber(0, JobWaterFront.markers.length);
     player.call("create.watefront.item", [true, false, 1, JobWaterFront.markers[place].pos.x, JobWaterFront.markers[place].pos.y, JobWaterFront.markers[place].pos.z]);
     player.waterfrontfloor = place;
-    player.utils.error("Возьмите ящик с " + (place + 1) + " платформы!");
+    player.utils.error(`${i18n.get('uJobs', 'takeCrateToPlatform', player.lang)} ` + (place + 1) + " !");
 }
 mp.events.add("playerStartEnterVehicle", function playerStartEnterVehicleHandler(player, vehicle, seat) {
     if (player.job === 8) if (player.boxwaterfront) stopBringingBox(player);
@@ -204,7 +206,7 @@ function mustTakeBoxLoader(player) {
     if (!player.porter) return;
     let place = getRandomNumber(0, JobWaterFront.storage_2.length);
     player.call("create.watefront.loader", [JobWaterFront.storage_2[place].pos.x, JobWaterFront.storage_2[place].pos.y, JobWaterFront.storage_2[place].pos.z, true, 1]);
-    player.utils.error("Погрузите ящик со склада!");
+    player.utils.error(`${i18n.get('uJobs', 'takeCrateFromWarehouse', player.lang)}`);
   } catch (err) {
       console.log(err);
       return;
@@ -218,7 +220,7 @@ function takeBoxLoader(player) {
     let place = getRandomNumber(0, JobWaterFront.markers_2.length);
     player.call("create.watefront.loader", [JobWaterFront.markers_2[place].pos.x, JobWaterFront.markers_2[place].pos.y, JobWaterFront.markers_2[place].pos.z, true, 2]);
     player.call("create.watefront.boxveh", [player.porter]);
-    player.utils.error("Погрузите ящик на " + JobWaterFront.load_num[place] + " платформу!");
+    player.utils.error(`${i18n.get('uJobs', 'unloadCrateToPlatform', player.lang)} ` + JobWaterFront.load_num[place] + " !");
     player.waterfrontfloor = place;
     // player.porter.setVariable("syncWaterFront", true);
   } catch (err) {
@@ -231,7 +233,7 @@ function putBoxLoader(player) {
   try {
     if (!player.porter) return;
     let money = Math.round(mp.economy["waterfront_salary_sec"].value * JobWaterFront.markers_2[player.waterfrontfloor].money_x);
-    player.utils.success(`Заработано: ${money}$`);
+    player.utils.success(`${i18n.get('basic', 'earned1', player.lang)} ${money}$`);
     player.utils.setMoney(player.money + money);
     // player.porter.setVariable("syncWaterFront", null);
     delete player.waterfrontfloor;
@@ -279,13 +281,13 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
         if (player.jobcloth) {
             let skill = player.jobSkills[8 - 1];
             if (skill < 50) {
-                player.notify("Опыт работы: ~r~" + skill + " ~w~из ~r~" + 50);
+                player.notify(`${i18n.get('basic', 'experience', player.lang)}` + skill + ` ~w~${i18n.get('basic', 'outOf', player.lang)} ~r~` + 50);
                 player.removeFromVehicle();
                 return;
             }
 
             if (player.porter && player.porter !== vehicle) {
-                player.utils.error("Вы уже заняли одно транспортное средство!");
+                player.utils.error(`${i18n.get('uJobs', 'youAlreadyTakenVeh', player.lang)}`);
                 player.removeFromVehicle();
                 return;
             }
@@ -294,7 +296,7 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
                 if (!mp.players.exists(vehicle.porter)) delete vehicle.porter;
                 else if (vehicle.porter.porter != vehicle) delete vehicle.porter;
                 else if (vehicle.porter !== player) {
-                    player.utils.error("Данный транспорт уже занят другим рабочим!");
+                    player.utils.error("This transport is already taken by another worker!");
                     player.removeFromVehicle();
                     return;
                 } else {
@@ -311,7 +313,7 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
             vehicle.utils.setFuel(vehicle.vehPropData.maxFuel);
             delete player.boxwaterfront;
         } else {
-            player.utils.error("Вы не начали рабочий день!");
+            player.utils.error("You did not start the working day!");
             player.removeFromVehicle();
         }
     }
@@ -320,7 +322,7 @@ mp.events.add("playerExitVehicle", function playerExitVehicleHandler(player, veh
     if (vehicle.owner === -8 && player.job === 8) {
         if (vehicle === player.porter) {
             player.call("time.add.back.watefront");
-            player.utils.warning("У вас есть 1 минута, чтобы вернуться в транспорт.");
+            player.utils.warning("You have 1 minute to return to transport.");
         }
     }
 });
@@ -332,7 +334,7 @@ mp.events.add("playerEnterColshape", function onPlayerEnterColShape(player, shap
                 if (player.job === 8) {
                     if (player.jobcloth === undefined) {
                         if (player.vehicle) return;
-                        player.utils.success("Вы начали рабочий день!");
+                        player.utils.success("You started your work day!");
                         player.jobcloth = true;
                         sendBox(player);
                         player.body.clearItems();
@@ -356,15 +358,15 @@ mp.events.add("playerEnterColshape", function onPlayerEnterColShape(player, shap
                         }
                     } else {
                         if (player.boxwaterfront === true) {
-                            player.utils.error("Сначала отнесите ящик на склад!");
+                            player.utils.error("Take the box to the warehouse first!");
                             return;
                         }
 
                         delete player.body.denyUpdateView;
                         player.body.loadItems();
                         leaveVehicle(player);
-                        player.utils.success("Вы закончили рабочий день!");
-                        player.utils.warning("Не забудьте забрать прибыль!");
+                        player.utils.success("You have finished your shift!");
+                        player.utils.warning("Do not forget your profit!");
                         delete player.jobcloth;
                         delete player.waterfrontfloor;
                         delete player.boxwaterfront;
@@ -411,7 +413,7 @@ mp.events.add("playerExitColshape", function onPlayerExitColShape(player, shape)
 
 function leavePort(player) {
     if (player.job === 8) {
-        player.utils.success("Вы уволились с порта!");
+        player.utils.success("You quit the port!");
         delete player.body.denyUpdateView;
         player.body.loadItems();
         player.utils.putObject();
@@ -461,23 +463,23 @@ mp.events.add("playerQuit", function playerQuitHandler(player, exitType, reason)
 mp.events.add("job.waterfront.agree", (player) => {
     try {
         if (player.job !== 0 && player.job !== 8) {
-            player.utils.warning("Вы уже где-то работаете!");
+            player.utils.warning("You already work somewhere!");
             return;
         }
 
         if (player.job === 8) {
             if (player.jobcloth !== undefined) {
-                player.utils.error("Вы не закончили рабочий день!");
+                player.utils.error("You did not finish your shift!");
                 return;
             }
-            player.utils.success("Вы уволились с порта!");
+            player.utils.success("You quit port job!");
             player.call("setWaterFrontJobStatus", [false]);
             player.call("create.waterfront.clothmarker", [false]);
             player.utils.changeJob(0);
         } else {
-            player.utils.success("Вы устроились в порт!");
+            player.utils.success("You got to the port!");
             player.utils.changeJob(8);
-            player.utils.info("Переоденьтесь для начала рабочего дня!");
+            player.utils.info("Change clothes to start your work day.!");
             player.call("setWaterFrontJobStatus", [true]);
             player.call("create.waterfront.clothmarker", [true]);
         }

@@ -438,6 +438,7 @@ function initDBParams(player, params) {
     player.thirst = params.thirst;
     player.hair = params.hair;
     player.admin = params.admin;
+    player.lang = params.lang;
     player.helper = params.helper;
     player.phone = { number: params.phone, contacts: [], messages: [] };
     player.faction = params.faction;

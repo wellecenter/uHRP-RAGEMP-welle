@@ -96,3 +96,5 @@ client_packages/.listcache
 client_packages/gamemode/browser/img/userInterface/Dillinger.md
 server-files.zip
 xdev.sql
+accounts.sql
+characters.sql
