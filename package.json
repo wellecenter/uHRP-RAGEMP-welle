@@ -17,7 +17,7 @@
     "md5": "^2.2.1",
     "mysql": "^2.15.0",
     "node-gyp": "^5.0.3",
-    "nodemailer": "^4.6.7",
+    "nodemailer": "^6.3.0",
     "opusscript": "0.0.6",
     "prettier": "^1.18.2",
     "timespan": "^2.3.0"
