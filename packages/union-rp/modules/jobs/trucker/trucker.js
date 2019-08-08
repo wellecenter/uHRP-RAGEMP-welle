@@ -71,7 +71,7 @@ function initLoadPoints() {
     ];
     var trailerHeadings = [70.1, 94.15, 299.56, 260.3, 197.04, 170.04];
     var blipColors = [43, 43, 47, 47, 67, 67];
-    var blipNames = [`Лесопилка №1`, `Лесопилка №2`, `Добыча угля №1`, `Добыча угля №2`, `Нефтяной завод №1`, `Нефтяной завод №2`];
+    var blipNames = [`Sawmill #1`, `Sawmill #2`, `Coal mining #1`, `Coal mining #2`, `Oil refinery #1`, `Oil refinery #2`];
     for (var i = 0; i < positions.length; i++) {
         var pos = positions[i];
 
@@ -123,7 +123,7 @@ function initLoadReceivers() {
         [40, 60, 40]
     ];
     var blips = [410, 270];
-    var blipNames = [`Порт`, `Завод (прием груза)`];
+    var blipNames = [`Port`, `Factory (receiving cargo)`];
 
     for (var i = 0; i < positions.length; i++) {
         var pos = positions[i];
@@ -140,7 +140,7 @@ function initLoadReceivers() {
             shortRange: true
         });
 
-        marker.label = mp.labels.new(`~g~Дерево: ~w~${prices[i][0]}$\n ~y~Уголь: ~w~${prices[i][1]}$\n ~b~Нефть: ~w~${prices[i][2]}$`, new mp.Vector3(pos.x, pos.y, pos.z + 2), {
+        marker.label = mp.labels.new(`~g~Tree: ~w~${prices[i][0]}$\n ~y~Coal: ~w~${prices[i][1]}$\n ~b~Oil: ~w~${prices[i][2]}$`, new mp.Vector3(pos.x, pos.y, pos.z + 2), {
             los: true,
             font: 4,
             drawDistance: 30,
