@@ -88,6 +88,7 @@ mp.events.add('guiReady', () => {
                 require('gamemode/scripts/planeSmoke.js');
                 require('gamemode/scripts/farm.js');
                 require('gamemode/scripts/atm_trigger.js');
+				require('gamemode/scripts/uI18n.js');
                 /*require('gamemode/moneyHUD.js');
                 //require('freeroam/passenger.js');
                 require('gamemode/indicators.js')(menu);

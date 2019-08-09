@@ -1,5 +1,3 @@
-const i18n = require('../../uI18n');
-
 // Создание BLIP
 mp.blips.new(351, new mp.Vector3(-410.083, -2700.001, 6.000), {
     name: 'Port job',
