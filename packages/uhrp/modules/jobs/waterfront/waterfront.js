@@ -313,7 +313,7 @@ mp.events.add("playerEnterVehicle", function playerEnterVehicleHandler(player, v
             vehicle.utils.setFuel(vehicle.vehPropData.maxFuel);
             delete player.boxwaterfront;
         } else {
-            player.utils.error("You did not start the working day!");
+            player.utils.error(`${i18n.get('uJobs', 'noShiftStart', player.lang)}`);
             player.removeFromVehicle();
         }
     }
@@ -322,7 +322,7 @@ mp.events.add("playerExitVehicle", function playerExitVehicleHandler(player, veh
     if (vehicle.owner === -8 && player.job === 8) {
         if (vehicle === player.porter) {
             player.call("time.add.back.watefront");
-            player.utils.warning("You have 1 minute to return to transport.");
+            player.utils.warning(`${i18n.get('uJobs', 'returnToYourVehicle', player.lang)}`);
         }
     }
 });
@@ -334,7 +334,7 @@ mp.events.add("playerEnterColshape", function onPlayerEnterColShape(player, shap
                 if (player.job === 8) {
                     if (player.jobcloth === undefined) {
                         if (player.vehicle) return;
-                        player.utils.success("You started your work day!");
+                        player.utils.success(`${i18n.get('uJobs', 'shiftStart', player.lang)}`);
                         player.jobcloth = true;
                         sendBox(player);
                         player.body.clearItems();
@@ -358,15 +358,15 @@ mp.events.add("playerEnterColshape", function onPlayerEnterColShape(player, shap
                         }
                     } else {
                         if (player.boxwaterfront === true) {
-                            player.utils.error("Take the box to the warehouse first!");
+                            player.utils.error(`${i18n.get('uJobs', 'moveBoxToWarehouseFirst', player.lang)}`);
                             return;
                         }
 
                         delete player.body.denyUpdateView;
                         player.body.loadItems();
                         leaveVehicle(player);
-                        player.utils.success("You have finished your shift!");
-                        player.utils.warning("Do not forget your profit!");
+                        player.utils.success(`${i18n.get('uJobs', 'finishedShift', player.lang)}`);
+                        player.utils.warning(`${i18n.get('uJobs', 'noForgetProfit', player.lang)}`);
                         delete player.jobcloth;
                         delete player.waterfrontfloor;
                         delete player.boxwaterfront;

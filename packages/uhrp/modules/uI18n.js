@@ -91,7 +91,7 @@ const i18n = {
 // START ADMIN COMMANDS
 
         admin: {
-			        {
+			    
 			adminChangeLang: {
 			    eng: 'Has set your main language to:',
 			    ro: 'Va schimbat limba de afisare in:',			
@@ -100,8 +100,7 @@ const i18n = {
 			    esp: '',
 			    br: '',
 			    fr: '',							
-			},
-		},	
+			},	
 	},
 
 // STOP ADMIN COMMANDS
@@ -217,7 +216,7 @@ const i18n = {
 			br: '',
 			fr: '',
 		},			
-		vehiAlreadyTaken: {
+		vehAlreadyTaken: {
 			eng: 'This vehicle is already taken by another worker!',
 			ro: 'Acest vehicul apartine altui muncitor',			
 			rus: '',
@@ -225,7 +224,61 @@ const i18n = {
 			esp: '',
 			br: '',
 			fr: '',
-		},					
+		},
+		noShiftStart: {
+			eng: 'You did not start your shift yet!',
+			ro: 'Nu ti-ai inceput tura inca!',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},
+		shiftStart: {
+			eng: 'You started your shift!',
+			ro: 'Ai intrat in tura!',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},		
+		returnToYourVehicle: {
+			eng: 'You have ~r~1 ~w~minute to return to your vehicle.',
+			ro: 'Ai ~r~1 ~w~minut sa te intorci inapoi in masina',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},
+		moveBoxToWarehouseFirst: {
+			eng: 'Take the box to the warehouse first!',
+			ro: 'Muta cutia in depozit prima data!',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},
+		finishedShift: {
+			eng: 'You have finished your shift!',
+			ro: 'Ti-ai terminat tura!',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},
+		noForgetProfit: {
+			eng: 'Do not forget your profit!',
+			ro: 'Nu uita profitul!',			
+			rus: '',
+			ger: '',
+			esp: '',
+			br: '',
+			fr: '',
+		},		
 		 PortWorker: {
             
 
