@@ -89,9 +89,9 @@ typings/
 
 # Configs
 uhrprage.sql
-packages/union-rp/modules/mailSender.js
-packages/union-rp/config.js
-packages/union-rp/modules/DB.js
+packages/uhrp/modules/mailSender.js
+packages/uhrp/config.js
+packages/uhrp/modules/DB.js
 client_packages/.listcache
 client_packages/gamemode/browser/img/userInterface/Dillinger.md
 server-files.zip
