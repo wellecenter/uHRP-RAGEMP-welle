@@ -1,3 +1,5 @@
+const i18n = require('../../uI18n');
+
 // Создание BLIP
 mp.blips.new(351, new mp.Vector3(-410.083, -2700.001, 6.000), {
     name: 'Port job',
@@ -411,7 +413,7 @@ mp.events.add("playerExitColshape", function onPlayerExitColShape(player, shape)
 
 function leavePort(player) {
     if (player.job === 8) {
-        player.utils.success("You quit the port!");
+        player.utils.success(`${i18n.get('uJobs', 'youQuitJob', player.lang)}`);
         delete player.body.denyUpdateView;
         player.body.loadItems();
         player.utils.putObject();
@@ -461,7 +463,7 @@ mp.events.add("playerQuit", function playerQuitHandler(player, exitType, reason)
 mp.events.add("job.waterfront.agree", (player) => {
     try {
         if (player.job !== 0 && player.job !== 8) {
-            player.utils.warning("You already work somewhere!");
+            player.utils.warning(`${i18n.get('uJobs', 'youHaveJob', player.lang)}`);
             return;
         }
 
@@ -470,14 +472,14 @@ mp.events.add("job.waterfront.agree", (player) => {
                 player.utils.error("You did not finish your shift!");
                 return;
             }
-            player.utils.success("You quit port job!");
+            player.utils.success(`${i18n.get('uJobs', 'youQuitJob', player.lang)}`);
             player.call("setWaterFrontJobStatus", [false]);
             player.call("create.waterfront.clothmarker", [false]);
             player.utils.changeJob(0);
         } else {
-            player.utils.success("You got to the port!");
+            player.utils.success(`${i18n.get('uJobs', 'youGotJob', player.lang)}`);
             player.utils.changeJob(8);
-            player.utils.info("Change clothes to start your work day.!");
+            player.utils.info(`${i18n.get('uJobs', 'changeClothesJob', player.lang)}`);
             player.call("setWaterFrontJobStatus", [true]);
             player.call("create.waterfront.clothmarker", [true]);
         }

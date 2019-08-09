@@ -1,5 +1,5 @@
 const whitelist = require("./modules/whitelist");
-
+const i18n = require("./modules/uI18n");
 module.exports = {
     "veh": {
         description: "Create a car.",
@@ -2427,9 +2427,6 @@ module.exports = {
         minLevel: 1,
         syntax: "[login]:s [lang]:s",
         handler: (player, args) => {
-
-                const languages = ['eng', 'ro', 'rus', 'ger', 'esp', 'br', 'fr',];
-                const lang = languages[id];
             DB.Handle.query("SELECT * FROM accounts WHERE login=?", [args[0]], (e, result) => {
                 if (e) return terminal.error(e);
                 if (result.length < 1) return terminal.error(`Player with login: ${args[0]} not found!`, player);
@@ -2438,7 +2435,9 @@ module.exports = {
                 if (rec) {
                     terminal.info(`${player.name} changed account lang ${args[0]} on ${args[1]}`);
                     mp.logs.addLog(`${player.name} Changed account ${args[0]} main language on ${args[1]}`, 'main', player.account.id, player.sqlId, { level: player.admin, lang: args[1], login: args[0] });
-                    if(recPlayer) recPlayer.notifyWithPicture(`${i18n.get('basic', 'informations', player.lang)}`, `Admin: ~o~${player.name}`, `${i18n.get('basic', 'adminChangeLang', player.lang)} ~b~${args[1]}`, "CHAR_SOCIAL_CLUB", icon = 0, flashing = true, textColor = -1, bgColor = -1, flashColor = [77, 77, 77, 200]);
+                /* if(recPlayer) player.notifyWithPicture(`${i18n.get('basic', 'informations', player.lang)}`, 'Admin: ~o~${player.name}', `${i18n.get('basic', 'adminChangeLang', player.lang)} ~b~${args[1]}`, "CHAR_SOCIAL_CLUB");
+                */
+                   if(recPlayer) recPlayer.notifyWithPicture(`${i18n.get('basic', 'informations', player.lang)}`, `Admin: ~o~${player.name}`, `${i18n.get('admin', 'adminChangeSettings', player.lang)} ~n~${i18n.get('admin', 'adminPlayerName', player.lang)} ~b~${args[0]} ~n~~w~${i18n.get('admin', 'adminLangName', player.lang)} ~b~${args[1]}`, "CHAR_SOCIAL_CLUB");
                     DB.Handle.query(`UPDATE accounts SET lang=? WHERE login=?`, [args[1], args[0]]);                
 				
 				player.lang = args[1];
